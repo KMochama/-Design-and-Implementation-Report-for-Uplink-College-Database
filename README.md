@@ -60,15 +60,36 @@
 
 2.	Get the course codes and names of all available courses.
 
-   ```
-  SELECT courseCode, CourseName
-  FROM Courses;
-  ```
-  
+     ```
+    SELECT courseCode, CourseName
+    FROM Courses;
+    ```
+    <img width="360" alt="image" src="https://github.com/user-attachments/assets/ada1f6b0-eb37-48c8-8a00-9fc7aeca9978" />
 
-4.	Fetch the instructor IDs and names of all instructors teaching courses.
-5.	Retrieve the student IDs and course codes for all enrolled courses.
-6.	Get the grades and corresponding course codes for all students.
+
+3.	Fetch the instructor IDs and names of all instructors teaching courses.
+   
+     ```
+     -- Option 1
+    SELECT DISTINCT i.InstructorID, i.FirstName + ' ' + i.LastName AS FullName 
+    FROM Instructors i
+    JOIN Courses c ON i.InstructorID = c.InstructorID;
+    ```
+
+   ```
+     -- Using CTEs
+    WITH InstructorTeaching AS (
+        SELECT DISTINCT i.InstructorID, i.FirstName + ' ' + i.LastName AS FullName
+    FROM Instructors i
+    JOIN Courses c ON i.InstructorID = c.InstructorID
+    )
+    SELECT * FROM InstructorTeaching;
+  ```
+
+  <img width="305" alt="image" src="https://github.com/user-attachments/assets/be2a3001-ff40-4744-8b97-d675c51ee2cd" />
+
+6.	Retrieve the student IDs and course codes for all enrolled courses.
+7.	Get the grades and corresponding course codes for all students.
 
    
 **🟠 2. Filtering Data**
